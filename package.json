@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "react-lazyload": "^3.2.1",
+    "react-router-dom": "^6.26.0"
+  }
+}
