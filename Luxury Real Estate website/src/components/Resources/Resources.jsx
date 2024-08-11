@@ -1,8 +1,8 @@
 import React, { useState, memo } from 'react';
-import blogImage from '../../assets/andreas-m-ykfjtb0kphU-unsplash.jpg'; // Replace with the correct path to your image
-import cardImage1 from '../../assets/spencer-davis-ONVA6s03hg8-unsplash.jpg'; // Replace with the correct path to your card images
-import cardImage2 from '../../assets/visar-neziri-CAQvwCoHLhw-unsplash.jpg';
-import cardImage3 from '../../assets/marvin-meyer-SYTO3xs06fU-unsplash.jpg';
+import blogImage from '../../assets/blog_bg.jpg'; // Replace with the correct path to your image
+import cardImage1 from '../../assets/blogOne.jpg'; // Replace with the correct path to your card images
+import cardImage2 from '../../assets/blogTwo.jpg';
+import cardImage3 from '../../assets/blogThree.jpg';
 
 // Memoize ResourceCard to prevent unnecessary re-renders
 const ResourceCard = memo(({ image, header, date }) => (

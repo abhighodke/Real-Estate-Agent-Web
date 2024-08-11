@@ -1,11 +1,11 @@
 import React from 'react';
-import backgroundImage from '../../assets/LakeAustin.jpg'; // Replace with the correct path to your background image
+import backgroundImage from '../../assets/Travis.jpg'; // Replace with the correct path to your background image
 
 const Contact = () => {
   return (
-    <section className="flex flex-col md:flex-row w-full min-h-screen">
+    <section className="flex flex-col-reverse md:flex-row w-full min-h-screen">
       {/* Left Section: Contact Form */}
-      <div className="md:w-1/2 bg-white p-8 md:p-16">
+      <div className="w-full md:w-1/2 bg-white p-8 md:p-16">
         <h2 className="text-3xl lg:text-6xl mb-10 mt-10">Get In Touch</h2>
         <form className="space-y-6">
           <div className="flex flex-col md:flex-row md:space-x-4">
@@ -55,14 +55,11 @@ const Contact = () => {
 
       {/* Right Section: Background Image and Contact Details */}
       <div
-        className="md:w-1/2 bg-cover bg-center flex flex-col justify-center items-center p-8 md:p-16"
+        className="w-full md:w-1/2 h-64 md:h-auto bg-cover bg-center flex flex-col justify-center items-center p-8 md:p-16"
         style={{
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <div className="bg-black bg-transparent text-white p-8 rounded-lg text-center">
-          
-        </div>
       </div>
     </section>
   );

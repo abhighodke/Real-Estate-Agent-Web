@@ -57,9 +57,9 @@ const Header = ({ onMenuClick }) => {
         } ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }}
       >
-        <div className="text-6xl font-bold text-white">          
+        <div className="text-4xl font-bold text-white">          
           <Link to="/">
-          <h1>PS</h1>
+          <h3>PS</h3>
         </Link>
         </div>
         <nav className="flex space-x-8 items-center">

@@ -1,9 +1,13 @@
 import React from 'react';
+import lakeAustin from '../../assets/Lake.jpg';
+import travisHeights from '../../assets/Travis.jpg';
+import downtownAustin from '../../assets/downtown.jpg';
+import all from '../../assets/Explore_Nei.jpg';
 
 const NeighborhoodCard = ({ name, image, isViewAll, url }) => (
   <div
-    className="relative h-full w-full overflow-hidden bg-cover bg-center transition-opacity duration-300 hover:opacity-80 z-10 hover:z-20"
-    style={{ backgroundImage: image ? `url(${image})` : 'url(default-image-url)' }}
+    className="relative h-64 w-full md:h-full overflow-hidden bg-cover bg-center transition-opacity duration-300 hover:opacity-80 z-10 hover:z-20"
+    style={{ backgroundImage: `url(${image})` }}
   >
     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
       <div className="text-center relative z-10">
@@ -24,11 +28,6 @@ const NeighborhoodCard = ({ name, image, isViewAll, url }) => (
 );
 
 const Neighborhoods = () => {
-  const lakeAustin = 'https://images.pexels.com/photos/1575861/pexels-photo-1575861.jpeg';
-  const travisHeights = 'https://images.pexels.com/photos/8854125/pexels-photo-8854125.jpeg';
-  const downtownAustin = 'https://images.pexels.com/photos/25636642/pexels-photo-25636642/free-photo-of-top-view-of-green-fields-and-a-forest.jpeg';
-  const all = 'https://images.pexels.com/photos/547115/pexels-photo-547115.jpeg';
-  
   const neighborhoods = [
     { name: "LAKE AUSTIN", image: lakeAustin, url: 'https://en.wikipedia.org/wiki/Lake_Austin' },
     { name: "TRAVIS HEIGHTS", image: travisHeights, url: 'https://en.wikipedia.org/wiki/Travis_Heights,_Austin,_Texas' },
@@ -37,7 +36,7 @@ const Neighborhoods = () => {
   ];
 
   return (
-    <div className="relative w-screen h-screen grid grid-cols-2 grid-rows-2 gap-0">
+    <div className="relative w-full h-auto md:h-screen grid grid-cols-1 md:grid-cols-2 gap-0">
       {neighborhoods.map((neighborhood, index) => (
         <NeighborhoodCard key={index} {...neighborhood} />
       ))}
