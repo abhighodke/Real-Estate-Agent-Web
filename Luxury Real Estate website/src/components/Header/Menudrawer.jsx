@@ -34,10 +34,10 @@ const MenuDrawer = ({ isOpen, onClose }) => {
             </Link>
           </li>
           <li className="relative group">
-            <a href="/contact" className="text-white text-5xl relative" onClick={handleLinkClick}>
+            <Link to="/contact" className="text-white text-5xl relative" onClick={handleLinkClick}>
               Contact
               <span className="absolute left-0 bottom-0 h-0.5 w-full bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
