@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import emailjs from 'emailjs-com';
 import backgroundImage from '../../assets/downtown.jpg'; // Ensure the path is correct
 
 const Contact = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
