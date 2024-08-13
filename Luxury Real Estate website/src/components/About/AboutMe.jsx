@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import aboutImage from '../../assets/will-turner-7MClrxZ8F6w-unsplash.jpg'; // Replace with the correct path to your image
 import topImage from '../../assets/mathias-reding-cmyDyDa6Wfk-unsplash.jpg'; // New image at the top
 
 const AboutMe = () => {
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <section className="w-full">
       {/* Top Image Section */}

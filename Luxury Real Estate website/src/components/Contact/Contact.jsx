@@ -1,65 +1,144 @@
-import React from 'react';
-import backgroundImage from '../../assets/Travis.jpg'; // Replace with the correct path to your background image
+import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
+import backgroundImage from '../../assets/downtown.jpg'; // Ensure the path is correct
 
 const Contact = () => {
-  return (
-    <section className="flex flex-col-reverse md:flex-row w-full min-h-screen">
-      {/* Left Section: Contact Form */}
-      <div className="w-full md:w-1/2 bg-white p-8 md:p-16">
-        <h2 className="text-3xl lg:text-6xl mb-10 mt-10">Get In Touch</h2>
-        <form className="space-y-6">
-          <div className="flex flex-col md:flex-row md:space-x-4">
-            <input
-              type="text"
-              placeholder="First Name"
-              className="w-full md:w-1/2 p-4 border border-gray-300 rounded-md mb-4 md:mb-0"
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="w-full md:w-1/2 p-4 border border-gray-300 rounded-md"
-            />
-          </div>
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full p-4 border border-gray-300 rounded-md"
-          />
-          <input
-            type="tel"
-            placeholder="Phone"
-            className="w-full p-4 border border-gray-300 rounded-md"
-          />
-          <textarea
-            placeholder="Message"
-            className="w-full p-4 border border-gray-300 rounded-md h-32"
-          ></textarea>
-          <div className="flex items-start">
-            <input
-              type="checkbox"
-              id="privacyPolicy"
-              className="mr-2 mt-1"
-            />
-            <label htmlFor="privacyPolicy" className="text-gray-600">
-              I agree to the privacy policy
-            </label>
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-black text-white py-4 rounded-md hover:bg-gray-800 transition-all duration-300"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-      {/* Right Section: Background Image and Contact Details */}
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSuccessMessage('');
+    setErrorMessage('');
+
+    try {
+      const result = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formData,
+        import.meta.env.VITE_EMAILJS_USER_ID
+      );
+      setSuccessMessage('Your message has been sent successfully!');
+    } catch (error) {
+      setErrorMessage('There was an error sending your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <section className="relative flex flex-col md:flex-row w-full min-h-screen text-white">
+      {/* Background Image with Overlay */}
       <div
-        className="w-full md:w-1/2 h-64 md:h-auto bg-cover bg-center flex flex-col justify-center items-center p-8 md:p-16"
+        className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
+        <div className="absolute inset-0 bg-black opacity-80"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative flex flex-col md:flex-row w-full min-h-screen">
+        {/* Left Section: Contact Details */}
+        <div className="w-full md:w-1/2 flex flex-col justify-end mb-36 items-center p-8 md:p-16 z-10">
+          <div className="space-y-4">
+            <h2 className="text-4xl font-bold mb-8">CONTACT US</h2>
+            <p>Name: John Doe</p>
+            <p>Phone: (971) 800-900</p>
+            <p>Email: johndoe@gmail.com</p>
+            <p>Address: 524 N Lamar Blvd., #204 Austin, TX 78703</p>
+          </div>
+        </div>
+
+        {/* Divider Line */}
+        <div className="hidden md:block w-0.5 bg-white opacity-50 z-10"></div>
+
+        {/* Right Section: Contact Form */}
+        <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 md:p-16 z-10">
+          <h2 className="text-4xl font-bold mb-8">SUBMIT A MESSAGE</h2>
+          <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-md">
+            <div className="flex flex-col space-y-4">
+              <label className="text-lg">Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="border-b border-white bg-transparent outline-none text-white"
+                required
+              />
+            </div>
+            <div className="flex flex-col space-y-4">
+              <label className="text-lg">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="border-b border-white bg-transparent outline-none text-white"
+                required
+              />
+            </div>
+            <div className="flex flex-col space-y-4">
+              <label className="text-lg">Phone</label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className="border-b border-white bg-transparent outline-none text-white"
+                required
+              />
+            </div>
+            <div className="flex flex-col space-y-4">
+              <label className="text-lg">Message</label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                className="border border-white bg-transparent outline-none text-white p-4"
+                rows="4"
+                required
+              ></textarea>
+            </div>
+            <div className="flex items-start space-x-2">
+              <input
+                type="checkbox"
+                id="privacyPolicy"
+                className="mt-1"
+                required
+              />
+              <label htmlFor="privacyPolicy" className="text-sm text-white">
+                By providing your contact information, you agree to our Privacy Policy and consent to receive marketing communications.
+              </label>
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 border border-white text-white hover:bg-white hover:text-black transition-all duration-300"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </button>
+          </form>
+          {successMessage && <p className="text-green-500 mt-4">{successMessage}</p>}
+          {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
+        </div>
       </div>
     </section>
   );
