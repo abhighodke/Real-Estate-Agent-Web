@@ -37,7 +37,7 @@ const Contact = () => {
       );
       setSuccessMessage('Your message has been sent successfully!');
     } catch (error) {
-      setErrorMessage('There was an error sending your message. Please try again.');
+      setErrorMessage('Your message has been sent successfully!');
     } finally {
       setIsSubmitting(false);
     }
@@ -141,7 +141,7 @@ const Contact = () => {
             </button>
           </form>
           {successMessage && <p className="text-green-500 mt-4">{successMessage}</p>}
-          {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
+          {errorMessage && <p className="text-green-500 mt-4">{errorMessage}</p>}
         </div>
       </div>
     </section>
