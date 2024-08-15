@@ -58,9 +58,9 @@ const Contact = () => {
       </div>
 
       {/* Content */}
-      <div className="relative flex flex-col md:flex-row w-full min-h-screen">
+      <div className="relative flex flex-col mt-16 md:flex-row w-full min-h-screen">
         {/* Left Section: Contact Details */}
-        <div className="w-full md:w-1/2 flex flex-col justify-end mb-36 items-center p-8 md:p-16 z-10">
+        <div className="w-full md:w-1/2 flex flex-col justify-end mb-6 items-center p-8 md:p-16 z-10">
           <div className="space-y-4">
             <h2 className="text-4xl font-bold mb-8">CONTACT US</h2>
             <p>Name: John Doe</p>
