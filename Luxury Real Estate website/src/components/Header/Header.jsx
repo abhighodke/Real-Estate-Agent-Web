@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import hamburgerIcon from '../../assets/hamburger-icon.png'; // Add your hamburger icon to the assets folder
+import clientData from '../../clientData'; // Import clientData
 
 const Header = ({ onMenuClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,13 +58,13 @@ const Header = ({ onMenuClick }) => {
         } ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }}
       >
-        <div className="text-4xl font-bold text-white">          
+        <div className="text-4xl font-bold text-white">
           <Link to="/">
-          <h3>PS</h3>
-        </Link>
+            {/* Header Initials */}
+            <h3>{clientData.headerInitials}</h3>
+          </Link>
         </div>
         <nav className="flex space-x-8 items-center">
-          
           <button onClick={onMenuClick} className="text-white transform transition-transform duration-700 hover:scale-110">
             <img src={hamburgerIcon} alt="Menu" className="w-10 h-10" />
           </button>

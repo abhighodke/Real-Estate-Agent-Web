@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import emailjs from 'emailjs-com';
 import backgroundImage from '../../assets/downtown.jpg'; // Ensure the path is correct
+import clientData from '../../clientData'; // Import clientData
 
 const Contact = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,7 +20,10 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -29,7 +33,7 @@ const Contact = () => {
     setErrorMessage('');
 
     try {
-      const result = await emailjs.send(
+      await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         formData,
@@ -37,7 +41,7 @@ const Contact = () => {
       );
       setSuccessMessage('Your message has been sent successfully!');
     } catch (error) {
-      setErrorMessage('Your message has been sent successfully!');
+      setErrorMessage('There was an error sending your message. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
@@ -63,10 +67,10 @@ const Contact = () => {
         <div className="w-full md:w-1/2 flex flex-col justify-end mb-6 items-center p-8 md:p-16 z-10">
           <div className="space-y-4">
             <h2 className="text-4xl font-bold mb-8">CONTACT US</h2>
-            <p>Name: John Doe</p>
-            <p>Phone: (971) 800-900</p>
-            <p>Email: johndoe@gmail.com</p>
-            <p>Address: 524 N Lamar Blvd., #204 Austin, TX 78703</p>
+            <p>Name: {clientData.agentName}</p>
+            <p>Phone: {clientData.contactDetails.phone}</p>
+            <p>Email: {clientData.contactDetails.email}</p>
+            <p>Address: {clientData.address}</p>
           </div>
         </div>
 
